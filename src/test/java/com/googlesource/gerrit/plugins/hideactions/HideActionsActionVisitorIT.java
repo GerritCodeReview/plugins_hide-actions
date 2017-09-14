@@ -33,7 +33,7 @@ public class HideActionsActionVisitorIT extends LightweightPluginDaemonTest {
 
   @Test
   public void defaultActions() throws Exception {
-    PushOneCommit.Result r = createChangeWithTopic();
+    PushOneCommit.Result r = createANewChangeWithTopic();
     r.assertOkStatus();
     Map<String, ActionInfo> actions = getActions(r.getChangeId());
     assertThat(actions).hasSize(3);
@@ -46,14 +46,14 @@ public class HideActionsActionVisitorIT extends LightweightPluginDaemonTest {
     values = {"rebase", "cherrypick"}
   )
   public void removedAction() throws Exception {
-    PushOneCommit.Result r = createChangeWithTopic();
+    PushOneCommit.Result r = createANewChangeWithTopic();
     r.assertOkStatus();
     Map<String, ActionInfo> actions = getActions(r.getChangeId());
     assertThat(actions).hasSize(1);
     assertThat(actions.keySet()).containsExactly("description");
   }
 
-  private PushOneCommit.Result createChangeWithTopic() throws Exception {
+  private PushOneCommit.Result createANewChangeWithTopic() throws Exception {
     return pushFactory
         .create(db, admin.getIdent(), testRepo, "a message", "a.txt", "content\n")
         .to("refs/for/master/" + name("topic"));
