@@ -35,7 +35,7 @@ public class HideActionsActionVisitorIT extends LightweightPluginDaemonTest {
   public void defaultActions() throws Exception {
     PushOneCommit.Result r = createANewChangeWithTopic();
     r.assertOkStatus();
-    Map<String, ActionInfo> actions = getActions(r.getChangeId());
+    Map<String, ActionInfo> actions = gApi.changes().id(r.getChangeId()).current().actions();
     assertThat(actions).hasSize(3);
     assertThat(actions.keySet()).containsExactly("cherrypick", "rebase", "description");
   }
@@ -48,7 +48,7 @@ public class HideActionsActionVisitorIT extends LightweightPluginDaemonTest {
   public void removedAction() throws Exception {
     PushOneCommit.Result r = createANewChangeWithTopic();
     r.assertOkStatus();
-    Map<String, ActionInfo> actions = getActions(r.getChangeId());
+    Map<String, ActionInfo> actions = gApi.changes().id(r.getChangeId()).current().actions();
     assertThat(actions).hasSize(1);
     assertThat(actions.keySet()).containsExactly("description");
   }
