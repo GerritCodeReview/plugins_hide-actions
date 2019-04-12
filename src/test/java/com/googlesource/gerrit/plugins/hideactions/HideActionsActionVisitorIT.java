@@ -26,9 +26,8 @@ import org.junit.Test;
 
 /** Test the hide-actions plugin. */
 @TestPlugin(
-  name = "hide-actions",
-  sysModule = "com.googlesource.gerrit.plugins.hideactions.HideActionsActionVisitor$Module"
-)
+    name = "hide-actions",
+    sysModule = "com.googlesource.gerrit.plugins.hideactions.HideActionsActionVisitor$Module")
 public class HideActionsActionVisitorIT extends LightweightPluginDaemonTest {
 
   @Test
@@ -42,9 +41,8 @@ public class HideActionsActionVisitorIT extends LightweightPluginDaemonTest {
 
   @Test
   @GerritConfig(
-    name = "plugin.hide-actions.actionToHide",
-    values = {"rebase", "cherrypick"}
-  )
+      name = "plugin.hide-actions.actionToHide",
+      values = {"rebase", "cherrypick"})
   public void removedAction() throws Exception {
     PushOneCommit.Result r = createANewChangeWithTopic();
     r.assertOkStatus();
