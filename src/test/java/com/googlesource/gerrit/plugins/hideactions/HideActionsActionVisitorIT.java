@@ -54,6 +54,6 @@ public class HideActionsActionVisitorIT extends LightweightPluginDaemonTest {
   private PushOneCommit.Result createANewChangeWithTopic() throws Exception {
     return pushFactory
         .create(admin.newIdent(), testRepo, "a message", "a.txt", "content\n")
-        .to("refs/for/master/" + name("topic"));
+        .to("refs/for/master" + "%topic=" + name("topic"));
   }
 }
